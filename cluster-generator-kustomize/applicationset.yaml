@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: frontend
+  namespace: argocd
+spec:
+  generator:
+    cluster:
+      namePrefix: demo-
+      namespaces:
+        - test
+        - dev
+        - proc
+  template:
+    metadata:
+      name: "{{.name}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Ghostwritten/argocd-applicationset-demo.git
+        targetRevision: main
+        path: kustomize/base
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+

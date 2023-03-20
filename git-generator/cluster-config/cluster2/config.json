@@ -1,0 +1,6 @@
+{
+  "cluster": {
+    "name": "cluster2",
+    "server": "https://127.0.0.1:44173"
+  }
+}
